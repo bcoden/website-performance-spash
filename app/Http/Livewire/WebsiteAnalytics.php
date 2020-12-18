@@ -24,11 +24,11 @@ class WebsiteAnalytics extends Component
     public $color;
 
     protected $rules = [
-        'website' => 'required|url',
+        'website' => 'required|regex:/^(https?:\/\/)?([w]{3})?\.?\w+\.\w{2,3}$/',
     ];
 
     protected $messages = [
-        'website.url' => 'Invalid Url.'
+        'website.regex' => 'Invalid Url.'
     ];
 
     public function updatedWebsite(): void {

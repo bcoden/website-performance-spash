@@ -32,8 +32,6 @@ class ContactForm extends Component
     public function submitForm() {
         $contact = $this->validate();
 
-        // check to see if we have a website
-
         // save to the db
         (new Inquiry([
             "fullname" => $contact['name'],
