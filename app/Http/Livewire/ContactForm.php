@@ -3,15 +3,20 @@
 namespace App\Http\Livewire;
 
 use App\Jobs\SendContactUsForm;
+use App\Models\Inquiry;
 use Livewire\Component;
 
 class ContactForm extends Component
 {
+    const THANKYOU_MESSAGE = "Thank you for getting in touch, we will get back to you as soon as we can.";
     /** @var @todo move this to a model */
     public $name;
     public $email;
     public $phone;
     public $message;
+    public $score_id;
+
+    protected $listeners = ['newScore'];
 
     /**
      * Validation Rules
@@ -27,6 +32,17 @@ class ContactForm extends Component
     public function submitForm() {
         $contact = $this->validate();
 
+        // check to see if we have a website
+
+        // save to the db
+        (new Inquiry([
+            "fullname" => $contact['name'],
+            "email" => $contact['email'],
+            "phone" => $contact['phone'],
+            "message" => $contact['message'],
+            "score_id" => $this->score_id ?? 0
+        ]))->save();
+
         // add mail to the queue
         SendContactUsForm::dispatch($contact);
 
@@ -34,7 +50,7 @@ class ContactForm extends Component
         $this->resetForm();
 
         // flash success message
-        session()->flash('success_message', trans('We have received your message and we will get back to you very soon.'));
+        session()->flash('success_message', self::THANKYOU_MESSAGE);
     }
 
     /**
@@ -56,6 +72,13 @@ class ContactForm extends Component
         return view('livewire.contact-form');
     }
 
+    public function newScore($scoreId): void {
+        $this->score_id = $scoreId;
+    }
+
+    /**
+     * Resets form values
+     */
     private function resetForm(): void
     {
         $this->name = '';
@@ -63,4 +86,6 @@ class ContactForm extends Component
         $this->phone = '';
         $this->message = '';
     }
+
+
 }

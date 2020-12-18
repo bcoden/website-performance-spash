@@ -24,7 +24,7 @@ class WebsiteAnalytics extends Component
     public $color;
 
     protected $rules = [
-        'website' => 'url',
+        'website' => 'required|url',
     ];
 
     protected $messages = [
@@ -36,11 +36,16 @@ class WebsiteAnalytics extends Component
         $this->website = $this->addScheme($this->website);
         $this->validate();
 
+        // grab existing record if it exists
+        $score = Score::where('url', $this->website)->first();
+
         // check cache for existing record
         $key = md5($this->website);
         if (Cache::has($key)) {
             $this->stats = Cache::get($key);
             $this->overall = $this->getOverallStat();
+
+            $this->emitNewScoreEvent($score);
             return;
         }
 
@@ -65,7 +70,6 @@ class WebsiteAnalytics extends Component
         Cache::put($key, $this->stats, 60 * 60 * 24 * 7); // cache for one week
 
         // store in db
-        $score = Score::where('url', $this->website)->first();
         if (!$score) {
             (new Score([
                 'url' => $this->website,
@@ -75,6 +79,9 @@ class WebsiteAnalytics extends Component
             $score->payload = $payload;
             $score->save();
         }
+
+        $this->emitNewScoreEvent($score);
+
     }
 
     /**
@@ -180,4 +187,15 @@ class WebsiteAnalytics extends Component
 
         return $color;
     }
+
+    /**
+     * @param $score
+     */
+    private function emitNewScoreEvent($score): void
+    {
+        if ($score) {
+            $this->emit('newScore', $score->id);
+        }
+    }
+
 }

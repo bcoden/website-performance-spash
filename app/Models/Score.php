@@ -13,4 +13,8 @@ class Score extends Model
     ];
 
     use HasFactory;
+
+    public function inqueries() {
+        return $this->hasMany(Inquiry::class, 'score_id');
+    }
 }

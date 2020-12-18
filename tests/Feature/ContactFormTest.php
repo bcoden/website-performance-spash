@@ -4,8 +4,6 @@ namespace Tests\Feature;
 
 use App\Http\Livewire\ContactForm;
 use App\Mail\ContactUsForm;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Livewire;
 use Tests\TestCase;
@@ -28,7 +26,7 @@ class ContactFormTest extends TestCase
             ->set('phone', '2185254224')
             ->set('message', 'This is a test')
             ->call('submitForm')
-            ->assertSee('We have received your message and we will get back to you very soon.');
+            ->assertSee(ContactForm::THANKYOU_MESSAGE);
 
         Mail::assertSent(function(ContactUsForm $mail) {
             $mail->build();
