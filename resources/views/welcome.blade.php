@@ -17,9 +17,10 @@
 
 </head>
 <body class="h-screen antialiased leading-none font-sans">
-<div class="p-8 flex items-center justify-center bg-white">
-    <livewire:website-analytics />
-</div>
+    <div class="p-8 bg-white">
+        <livewire:website-analytics />
+        <livewire:contact-form />
+    </div>
     <livewire:scripts />
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>
