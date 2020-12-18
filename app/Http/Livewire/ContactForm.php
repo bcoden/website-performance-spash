@@ -29,6 +29,9 @@ class ContactForm extends Component
         'message' => 'required|min:5'
     ];
 
+    /**
+     * Handles form action
+     */
     public function submitForm() {
         $contact = $this->validate();
 
@@ -70,6 +73,10 @@ class ContactForm extends Component
         return view('livewire.contact-form');
     }
 
+    /**
+     * Catches emitted event from score
+     * @param $scoreId
+     */
     public function newScore($scoreId): void {
         $this->score_id = $scoreId;
     }

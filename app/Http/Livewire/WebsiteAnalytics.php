@@ -31,6 +31,9 @@ class WebsiteAnalytics extends Component
         'website.regex' => 'Invalid Url.'
     ];
 
+    /**
+     * Main action handler
+     */
     public function updatedWebsite(): void {
         $this->resetState();
         $this->website = $this->addScheme($this->website);
@@ -135,6 +138,9 @@ class WebsiteAnalytics extends Component
         return $scores;
     }
 
+    /**
+     * Rests form and errors
+     */
     private function resetState(): void
     {
         $this->resetErrorBag();
