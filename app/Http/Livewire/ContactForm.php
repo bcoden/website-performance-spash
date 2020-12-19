@@ -37,10 +37,10 @@ class ContactForm extends Component
 
         // save to the db
         (new Inquiry([
-            "fullname" => $contact['name'],
-            "email" => $contact['email'],
-            "phone" => $contact['phone'],
-            "message" => $contact['message'],
+            "fullname" => strip_tags($contact['name']),
+            "email" => strip_tags($contact['email']),
+            "phone" => strip_tags($contact['phone']),
+            "message" => strip_tags($contact['message']),
             "score_id" => $this->score_id ?? 0
         ]))->save();
 
