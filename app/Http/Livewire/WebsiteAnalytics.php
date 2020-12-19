@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Score;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
+use Symfony\Component\Process\Exception\ProcessTimedOutException;
 
 class WebsiteAnalytics extends Component
 {
@@ -53,7 +54,12 @@ class WebsiteAnalytics extends Component
         }
 
         // runs lighthouse commands
-        $process = $this->getStats();
+        try {
+            $process = $this->getStats();
+        } catch (ProcessTimedOutException $e) {
+            //@todo log error
+            return;
+        }
 
         // executes after the command finishes
         if (!$process->isSuccessful()) {
@@ -122,6 +128,7 @@ class WebsiteAnalytics extends Component
             return $scores;
         }
 
+        // maps category keys to scores to create clean array
         $keys = array_keys($categories);
         $scores = array_combine(
             $keys,
