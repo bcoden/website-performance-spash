@@ -1,4 +1,4 @@
-<div class="relative bg-white my-10">
+<div class="relative bg-white my-10 w-full">
     <a id="contact-us"></a>
     <div class="relative max-w-7xl mx-auto lg:grid lg:grid-cols-5">
         <div class="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">

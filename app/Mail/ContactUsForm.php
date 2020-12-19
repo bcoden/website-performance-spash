@@ -32,6 +32,6 @@ class ContactUsForm extends Mailable
     {
         return $this->from(config('mail.from'))
             ->subject(trans('Thank you for your interest'))
-            ->view('emails.contact');
+            ->view('emails.guest.contact');
     }
 }
