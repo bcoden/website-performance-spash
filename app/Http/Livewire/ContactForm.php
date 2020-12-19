@@ -35,12 +35,15 @@ class ContactForm extends Component
     public function submitForm() {
         $contact = $this->validate();
 
+        // filter values
+        $contact = $this->filter($contact);
+
         // save to the db
         (new Inquiry([
-            "fullname" => strip_tags($contact['name']),
-            "email" => strip_tags($contact['email']),
-            "phone" => strip_tags($contact['phone']),
-            "message" => strip_tags($contact['message']),
+            "fullname" => $contact['name'],
+            "email" => $contact['email'],
+            "phone" => $contact['phone'],
+            "message" => $contact['message'],
             "score_id" => $this->score_id ?? 0
         ]))->save();
 
@@ -90,6 +93,18 @@ class ContactForm extends Component
         $this->email = '';
         $this->phone = '';
         $this->message = '';
+    }
+
+    /**
+     * @param array $contact
+     * @return array|string[]
+     */
+    private function filter(array $contact): array
+    {
+        $contact = array_map(function ($value) {
+            return strip_tags($value);
+        }, $contact);
+        return $contact;
     }
 
 
