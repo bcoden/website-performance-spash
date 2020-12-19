@@ -11,7 +11,7 @@
                     @foreach($stats as $key => $stat)
                     <div class="flex flex-row items-center justify-start border-b border-r border-gray-100">
                         <dd class="order-1 text-5xl font-extrabold text-indigo-600 w-1/2 h-auto">
-                            <livewire:animated-circle :percent="$stat" :color="$this->getColor($stat)"/>
+                            <livewire:animated-circle :percent="$stat" :color="$this->getColor($stat)" :key="$key"/>
                         </dd>
                         <dt class="flex-grow order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
                             <h5 class="text-sm">{{ ucfirst($key) }}</h5>
