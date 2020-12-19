@@ -7,10 +7,17 @@ websiteAnalytics = () => {
             "A 1 second delay reduces customer satisfaction by 16%"
         ),
         scaffold: function() {
-            if (this.websiteStatsQuotes) {
-                this.quote = this.websiteStatsQuotes[
+            let getRandomQuote = () => {
+                return this.quote = this.websiteStatsQuotes[
                     Math.floor(Math.random() * Math.floor(this.websiteStatsQuotes.length))
                 ];
+            };
+            if (this.websiteStatsQuotes) {
+                // based on flag add timer
+                this.quote = getRandomQuote();
+                setInterval(() => {
+                    this.quote = getRandomQuote();
+                }, 8000);
             }
         }
     }

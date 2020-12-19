@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class AnimatedCircle extends Component
 {
-    public $percent;
+    public $score;
     public $color;
 
     public function render()
