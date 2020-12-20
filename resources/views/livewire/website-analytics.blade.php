@@ -3,10 +3,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-4xl mx-auto text-center">
                 <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                    Are you getting the most out of your website?
+                    {{ __('Are you getting the most out of your website?') }}
                 </h2>
                 <p class="mt-3 text-xl text-gray-500 sm:mt-4">
-                    Enter your website url in the field below to see how you are doing.
+                    {{ __('Enter your website url in the field below to see how you are doing.') }}
                 </p>
             </div>
         </div>
@@ -23,21 +23,21 @@
     </div>
     @if ($stats)
         <div wire:loading.remove>
-            <div class="text-center w-3/4 m-auto"
-                <p>These scores which represent the end user experience are based on a scale of 0 - 100. Read more about what each score represents here <a class="text-blue-400 underline" href="https://web.dev/performance-scoring/" target="_blank" title="https://web.dev/performance-scoring/">https://web.dev/performance-scoring</a>.</p>
+            <div class="text-center w-3/4 m-auto">
+                <p>{{ __('These scores which represent the end user experience are based on a scale of 0 - 100. Read more about what each score represents here') }} <a class="text-blue-400 underline" href="https://web.dev/performance-scoring/" target="_blank" title="https://web.dev/performance-scoring/">https://web.dev/performance-scoring</a>.</p>
             </div>
             <div class="my-20" >
                 @component('components.website-performance-stats', ['stats' => $stats, 'overall' => $overall])@endcomponent
             </div>
             <div class="text-center m-auto" >
-                <h2 class="mb-4">Based on this report we have indentified opportunities to improve your website's user experience.</h2>
-                <a href="#contact-us" class="bg-green-400 p-4 rounded text-white font-weight-bold block w-40 m-auto">Learn More</a>
+                <h2 class="mb-4">{{ __('Based on this report we have indentified opportunities to improve your website\'s user experience.') }}</h2>
+                <a href="#contact-us" class="bg-green-400 p-4 rounded text-white font-weight-bold block w-40 m-auto">{{ __('views.learnMore') }}</a>
             </div>
         </div>
     @endif
     <div class="my-10">
         <div class="rounded bg-black text-white p-4 pb-6 mt-5">
-            <h3 class="font-bold text-2xl leading-tight mb-1.5">Did you know?</h3>
+            <h3 class="font-bold text-2xl leading-tight mb-1.5">{{ __('Did you know?') }}</h3>
             <div class="pt-1" x-text="quote"
             ></div>
         </div>

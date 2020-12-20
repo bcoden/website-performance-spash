@@ -8,9 +8,6 @@ use Livewire\Component;
 
 class ContactForm extends Component
 {
-    const THANKYOU_MESSAGE = "Thank you for getting in touch, we will get back to you as soon as we can.";
-    const SPAM_MESSAGE = "Woops! Something went wrong.";
-
     public $name;
     public $email;
     public $phone;
@@ -45,7 +42,7 @@ class ContactForm extends Component
         $contact = $this->validate();
 
         if ($this->isSpam()) {
-            session()->flash('error_message', self::SPAM_MESSAGE);
+            session()->flash('error_message', __('messages.contact.error_message'));
             return;
         }
 
@@ -68,7 +65,7 @@ class ContactForm extends Component
         $this->resetForm();
 
         // flash success message
-        session()->flash('success_message', self::THANKYOU_MESSAGE);
+        session()->flash('success_message', __('messages.contact.success_message'));
     }
 
     /**

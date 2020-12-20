@@ -4,14 +4,14 @@
         <div class="bg-gray-50 p-10 flex flex-col justify-content-center">
             <div class="max-w-lg mx-auto my-auto">
                 <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
-                    Get in touch
+                    {{ __('Get in touch') }}
                 </h2>
                 <p class="mt-3 text-lg leading-6 text-gray-500">
-                    Let's talk about what you can do to get the most out of your website.
+                    {{__('Let\'s talk about what you can do to get the most out of your website.') }}
                 </p>
                 <dl class="mt-8 text-base text-gray-500">
                     <div class="mt-6">
-                        <dt class="sr-only">Phone number</dt>
+                        <dt class="sr-only">{{ ucfirst(__('views.phoneNumber')) }}</dt>
                         <dd class="flex">
                             <!-- Heroicon name: phone -->
                             <svg class="flex-shrink-0 h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -21,7 +21,7 @@
                         </dd>
                     </div>
                     <div class="mt-3">
-                        <dt class="sr-only">Email</dt>
+                        <dt class="sr-only">{{ ucfirst(__('views.email')) }}</dt>
                         <dd class="flex">
                             <!-- Heroicon name: mail -->
                             <svg class="flex-shrink-0 h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -50,23 +50,23 @@
                 <form wire:submit.prevent="submitForm" method="post" class="grid grid-cols-1 gap-y-6">
                     @csrf
                     <div>
-                        <label for="full_name" class="sr-only">Full name</label>
-                        <input wire:model.lazy="name" type="text" name="name" id="name" autocomplete="name" class="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="Full name">
+                        <label for="full_name" class="sr-only">{{ ucfirst(__('views.fullname')) }}</label>
+                        <input wire:model.lazy="name" type="text" name="name" id="name" autocomplete="name" class="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="{{ ucfirst(__('views.fullname')) }}">
                         @error('name') <div class="text-red-500 font-weight-bold mt-2 error">{{ $message }}</div> @enderror
                     </div>
                     <div>
-                        <label for="email" class="sr-only">Email</label>
-                        <input wire:model.lazy="email" id="email" name="email" type="email" autocomplete="email" class="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="Email">
+                        <label for="email" class="sr-only">{{ ucfirst(__('views.email')) }}</label>
+                        <input wire:model.lazy="email" id="email" name="email" type="email" autocomplete="email" class="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="{{ ucfirst(__('views.email')) }}">
                         @error('email') <div class="text-red-500 font-weight-bold mt-2 error">{{ $message }}</div> @enderror
                     </div>
                     <div>
-                        <label for="phone" class="sr-only">Phone</label>
-                        <input wire:model.lazy="phone" type="text" name="phone" id="phone" autocomplete="tel" class="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="Phone">
+                        <label for="phone" class="sr-only">{{ ucfirst(__('views.phoneNumber')) }}</label>
+                        <input wire:model.lazy="phone" type="text" name="phone" id="phone" autocomplete="tel" class="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="{{ ucfirst(__('views.phoneNumber')) }}">
                         @error('phone') <div class="text-red-500 font-weight-bold mt-2 error">{{ $message }}</div> @enderror
                     </div>
                     <div>
-                        <label for="message" class="sr-only">Message</label>
-                        <textarea wire:model.lazy="message" id="message" name="message" rows="4" class="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="Message"></textarea>
+                        <label for="message" class="sr-only">{{ ucfirst(__('views.message')) }}</label>
+                        <textarea wire:model.lazy="message" id="message" name="message" rows="4" class="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="{{ ucfirst(__('views.message')) }}"></textarea>
                         @error('message') <div class="text-red-500 font-weight-bold mt-2 error">{{ $message }}</div> @enderror
                     </div>
                     <div>
@@ -75,8 +75,8 @@
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                             </svg>
-                            <span wire:loading wire:target="submitForm">Processing</span>
-                            <span wire:loading.remove wire:target="submitForm">Submit</span>
+                            <span wire:loading wire:target="submitForm">{{ ucfirst(__('views.processing')) }}</span>
+                            <span wire:loading.remove wire:target="submitForm">{{ ucfirst(__('views.submit')) }}</span>
                         </button>
                     </div>
 
