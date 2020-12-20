@@ -31,7 +31,7 @@ class ContactFormTest extends TestCase
             sleep(4);
 
             $form->call('submitForm')
-                ->assertSee(ContactForm::THANKYOU_MESSAGE);
+                ->assertSee(__('messages.contact.success_message'));
 
         Mail::assertSent(function(ContactUsForm $mail) {
             $mail->build();
@@ -116,6 +116,6 @@ class ContactFormTest extends TestCase
             ->set('phone', '2185254224')
             ->set('message', 'This is a test')
             ->call('submitForm')
-            ->assertSee(ContactForm::SPAM_MESSAGE);
+            ->assertSee(__('messages.contact.error_message'));
     }
 }
