@@ -1,8 +1,8 @@
 <div class="relative bg-white my-10 w-full">
     <a id="contact-us"></a>
-    <div class="relative max-w-7xl mx-auto lg:grid lg:grid-cols-5">
-        <div class="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
-            <div class="max-w-lg mx-auto">
+    <div class="relative md:grid md:grid-cols-2 ">
+        <div class="bg-gray-50 p-10 flex flex-col justify-content-center">
+            <div class="max-w-lg mx-auto my-auto">
                 <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
                     Get in touch
                 </h2>
@@ -33,7 +33,7 @@
                 </dl>
             </div>
         </div>
-        <div class="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
+        <div class="bg-white p-10">
             <div class="max-w-lg mx-auto lg:max-w-none">
                 @if (session()->has('success_message'))
                     <div class="bg-green-600 mb-5 text-white rounded p-4 alert alert-success">

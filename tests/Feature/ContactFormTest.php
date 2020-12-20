@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Livewire\ContactForm;
+use App\Mail\AdminNotification;
 use App\Mail\ContactUsForm;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Livewire;
@@ -35,6 +36,9 @@ class ContactFormTest extends TestCase
                 $mail->hasFrom('joemccorison@gmail.com') &&
                 $mail->subject === 'Thank you for your interest';
         });
+
+        // ensure that the admin notification was sent
+        Mail::assertSent(AdminNotification::class);
     }
 
     /** @test */

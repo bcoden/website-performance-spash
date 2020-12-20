@@ -230,4 +230,7 @@ return [
 
     ],
 
+    'admin' => [
+        "email" => env('ADMIN_EMAIL', 'joemccorison@gmail.com')
+    ]
 ];

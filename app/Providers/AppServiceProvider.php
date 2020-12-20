@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Blade;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Process\Process;
 
@@ -28,6 +28,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        Model::unguard();
     }
 }

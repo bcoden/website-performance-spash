@@ -22,7 +22,7 @@ class WebsiteStatsTest extends TestCase
         Livewire::test(WebsiteAnalytics::class)
             ->set('website', '')
             ->call('updatedWebsite')
-            ->assertHasErrors(['website'=>'url']);
+            ->assertHasErrors(['website'=>'regex']);
     }
 
     /** @test */
@@ -38,15 +38,15 @@ class WebsiteStatsTest extends TestCase
     public function website_stats_component_works_with_valid_url() {
         $this->processMock(true, file_get_contents(__DIR__ . '/../data/lighthouse.json'));
         Livewire::test(WebsiteAnalytics::class)
-            ->set('website', 'blahh')
+            ->set('website', 'https://notarealsite.com')
             ->call('updatedWebsite')
             ->assertHasNoErrors()
             ->assertSet('stats', [
-                "performance" => 0.4,
-                "accessibility" => 0.91,
-                "best-practices" => 0.8,
-                "seo" => 0.79,
-                "pwa" => 0.54
+                "performance" => 40.0,
+                "accessibility" => 91.0,
+                "best-practices" => 80.0,
+                "seo" => 79.0,
+                "pwa" => 54.0
             ]);
     }
 

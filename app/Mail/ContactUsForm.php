@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,17 +12,20 @@ class ContactUsForm extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $name;
+    /**
+     * @var User
+     */
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
-{
-    $this->name = $name;
-}
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
 
     /**
      * Build the message.

@@ -3,7 +3,9 @@
 namespace App\Jobs;
 
 
+use App\Mail\AdminNotification;
 use App\Mail\ContactUsForm;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -37,8 +39,19 @@ class SendContactUsForm implements ShouldQueue
         $email = $this->contact['email'] ?? null;
         $name = $this->contact['name'] ?? null;
 
+        // send mail to user
         if ($email && $name) {
-            Mail::to($email)->send(new ContactUsForm($name));
+            $user = new User([
+                'name' => $name,
+                'email' => $email
+            ]);
+            Mail::to($user->email)->send(new ContactUsForm($user));
         }
+
+        // send notification to admin
+        $admin = new User(['email' => config('app.admin.email')]);
+        Mail::to($admin->email)->send(new AdminNotification(
+            AdminNotification::NOTIFICATION_CONTACT_RECIEVED, $admin)
+        );
     }
 }
