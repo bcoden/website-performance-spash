@@ -30,7 +30,7 @@
                 @component('components.website-performance-stats', ['stats' => $stats, 'overall' => $overall])@endcomponent
             </div>
             <div class="text-center m-auto" >
-                <h2 class="mb-4">{{ __('Based on this report we have indentified opportunities to improve your website\'s user experience.') }}</h2>
+                <h2 class="mb-4">{{ __('Based on this report we have indentified some opportunities to improve your website\'s user experience.') }}</h2>
                 <a href="#contact-us" class="bg-green-400 p-4 rounded text-white font-weight-bold block w-40 m-auto">{{ __('views.learnMore') }}</a>
             </div>
         </div>

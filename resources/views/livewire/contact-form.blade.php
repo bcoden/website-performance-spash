@@ -7,7 +7,7 @@
                     {{ __('Get in touch') }}
                 </h2>
                 <p class="mt-3 text-lg leading-6 text-gray-500">
-                    {{__('Let\'s talk about what you can do to get the most out of your website.') }}
+                    {{__('If you would like to learn more about how you can improve your website user experience please contact us.') }}
                 </p>
                 <dl class="mt-8 text-base text-gray-500">
                     <div class="mt-6">
