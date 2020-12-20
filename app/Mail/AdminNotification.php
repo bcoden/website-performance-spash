@@ -18,6 +18,10 @@ class AdminNotification extends Mailable
     private static $_notificationTemplates = [
         self::NOTIFICATION_CONTACT_RECIEVED => 'emails.admin.contact.received'
     ];
+
+    private static $_subjectTemplates = [
+        self::NOTIFICATION_CONTACT_RECIEVED => 'New website inquiry'
+    ];
     /**
      * @var User
      */
@@ -43,8 +47,11 @@ class AdminNotification extends Mailable
     {
         // get the template if exists send the notification
         $template = self::$_notificationTemplates[$this->notificationType] ?? null;
+        $subject = self::$_subjectTemplates[$this->notificationType] ?? 'Admin Notification';
         if ($template) {
-            return $this->view($template);
+            return $this->from(config('mail.from'))
+                ->subject(__($subject))
+                ->view($template);
         }
     }
 }

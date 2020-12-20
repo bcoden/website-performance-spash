@@ -11,7 +11,6 @@ class ContactForm extends Component
     const THANKYOU_MESSAGE = "Thank you for getting in touch, we will get back to you as soon as we can.";
     const SPAM_MESSAGE = "Woops! Something went wrong.";
 
-    /** @var @todo move this to a model */
     public $name;
     public $email;
     public $phone;

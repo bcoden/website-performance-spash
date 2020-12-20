@@ -45,7 +45,7 @@ class WebsiteAnalytics extends Component
 
         // check cache for existing record
         $key = md5($this->website);
-        if (Cache::has($key)) {
+        if ($score && Cache::has($key)) {
             $this->stats = Cache::get($key);
             $this->overall = $this->getOverallStat();
 
@@ -57,7 +57,6 @@ class WebsiteAnalytics extends Component
         try {
             $process = $this->getStats();
         } catch (ProcessTimedOutException $e) {
-            //@todo log error
             return;
         }
 
@@ -80,10 +79,12 @@ class WebsiteAnalytics extends Component
 
         // store in db
         if (!$score) {
-            (new Score([
+            $score = new Score([
                 'url' => $this->website,
                 'payload' => $payload
-            ]))->save();
+            ]);
+
+            $score->save();
         } else {
             $score->payload = $payload;
             $score->save();
