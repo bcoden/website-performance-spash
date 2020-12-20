@@ -9,12 +9,15 @@ use Livewire\Component;
 class ContactForm extends Component
 {
     const THANKYOU_MESSAGE = "Thank you for getting in touch, we will get back to you as soon as we can.";
+    const SPAM_MESSAGE = "Woops! Something went wrong.";
+
     /** @var @todo move this to a model */
     public $name;
     public $email;
     public $phone;
     public $message;
     public $score_id;
+    public $load_time;
 
     protected $listeners = ['newScore'];
 
@@ -30,10 +33,22 @@ class ContactForm extends Component
     ];
 
     /**
+     * Set default values
+     */
+    public function mount() {
+        $this->load_time = microtime(true);
+    }
+
+    /**
      * Handles form action
      */
     public function submitForm() {
         $contact = $this->validate();
+
+        if ($this->isSpam()) {
+            session()->flash('error_message', self::SPAM_MESSAGE);
+            return;
+        }
 
         // filter values
         $contact = $this->filter($contact);
@@ -107,5 +122,17 @@ class ContactForm extends Component
         return $contact;
     }
 
+    /**
+     * @return bool
+     */
+    private function isSpam(): bool {
+
+        $elapsed = microtime(true) -  $this->load_time;
+        if ($elapsed < 3) {
+            return true;
+        }
+
+        return false;
+    }
 
 }

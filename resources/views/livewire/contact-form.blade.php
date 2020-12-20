@@ -35,11 +35,17 @@
         </div>
         <div class="bg-white p-10">
             <div class="max-w-lg mx-auto lg:max-w-none">
+
                 @if (session()->has('success_message'))
                     <div class="bg-green-600 mb-5 text-white rounded p-4 alert alert-success">
                         {{ session('success_message') }}
                     </div>
+                @elseif(session()->has('error_message'))
+                    <div class="bg-red-600 mb-5 text-white rounded p-4 alert alert-success">
+                        {{ session('error_message') }}
+                    </div>
                 @endif
+
                 @if (!session()->has('success_message'))
                 <form wire:submit.prevent="submitForm" method="post" class="grid grid-cols-1 gap-y-6">
                     @csrf
@@ -72,6 +78,10 @@
                             <span wire:loading wire:target="submitForm">Processing</span>
                             <span wire:loading.remove wire:target="submitForm">Submit</span>
                         </button>
+                    </div>
+
+                    <div class="hidden">
+                        <input wire:model.lazy="load_time" type="input" name="load_time">
                     </div>
                 </form>
                 @endif

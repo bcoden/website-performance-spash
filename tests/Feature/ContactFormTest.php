@@ -21,13 +21,17 @@ class ContactFormTest extends TestCase
     public function contact_form_successfully_submits() {
         Mail::fake();
 
-        Livewire::test(ContactForm::class)
+        $form = Livewire::test(ContactForm::class)
             ->set('name', 'Joe McCorison')
             ->set('email', 'joemccorison@gmail.com')
             ->set('phone', '2185254224')
-            ->set('message', 'This is a test')
-            ->call('submitForm')
-            ->assertSee(ContactForm::THANKYOU_MESSAGE);
+            ->set('message', 'This is a test');
+
+            // bypass bot detection
+            sleep(4);
+
+            $form->call('submitForm')
+                ->assertSee(ContactForm::THANKYOU_MESSAGE);
 
         Mail::assertSent(function(ContactUsForm $mail) {
             $mail->build();
@@ -102,5 +106,16 @@ class ContactFormTest extends TestCase
             ->set('message', 'test')
             ->call('submitForm')
             ->assertHasErrors(['message' => 'min']);;
+    }
+
+    /** @test */
+    public function contact_form_detects_bot_honeypot() {
+        Livewire::test(ContactForm::class)
+            ->set('name', 'Joe McCorison')
+            ->set('email', 'joemccorison@gmail.com')
+            ->set('phone', '2185254224')
+            ->set('message', 'This is a test')
+            ->call('submitForm')
+            ->assertSee(ContactForm::SPAM_MESSAGE);
     }
 }
