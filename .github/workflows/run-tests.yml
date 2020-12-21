@@ -28,7 +28,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:8.12"F --no-interaction --no-update
+          composer require "laravel/framework:8.12" --no-interaction --no-update
           composer update --prefer-stable --prefer-dist --no-interaction --no-suggest
       - name: Execute tests
         run: vendor/bin/phpunit
