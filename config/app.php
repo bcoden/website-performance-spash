@@ -231,6 +231,7 @@ return [
     ],
 
     'admin' => [
-        "email" => env('ADMIN_EMAIL', 'joemccorison@gmail.com')
+        "email" => env('ADMIN_EMAIL', 'joemccorison@gmail.com'),
+        "name" => env('ADMIN_NAME', 'Admin')
     ]
 ];

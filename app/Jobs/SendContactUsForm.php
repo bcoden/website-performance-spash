@@ -49,7 +49,7 @@ class SendContactUsForm implements ShouldQueue
         }
 
         // send notification to admin
-        $admin = new User(['email' => config('app.admin.email')]);
+        $admin = new User(['email' => config('app.admin.email'), 'name' => config('app.admin.name') ]);
         Mail::to($admin->email)->send(new AdminNotification(
             AdminNotification::NOTIFICATION_CONTACT_RECIEVED, $admin)
         );
