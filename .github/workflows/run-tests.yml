@@ -2,8 +2,8 @@ name: Run tests
 on: [push]
 jobs:
   php-tests:
-    runs-on: ${{ matrix.os }}
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
