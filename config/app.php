@@ -237,5 +237,6 @@ return [
     'tagmanager' => [
         'id' => env('TAG_MANAGER_ID', ''),
         'environment-id' => env('TAG_MANAGER_ENVIRONMENT_ID', 0),
+        'auth' => env('TAG_MANAGER_AUTH', ''),
     ],
 ];
