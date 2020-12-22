@@ -32,11 +32,14 @@ jobs:
           composer update --prefer-stable --prefer-dist --no-interaction --no-suggest
       - name: Setup App
         run: |
-          cp .env.example .env
-          touch $GITHUB_WORKSPACE/database/website-analyzer.sqlite
+          php -r "file_exists('.env') || copy('.env.example', '.env');"
+          touch database/testdb.sqlite
           env:
             DB_CONNECTION=sqlite
-            DB_DATABASE=$GITHUB_WORKSPACE/database/website-analyzer.sqlite
+            DB_DATABASE=database/testdb.sqlite
+            CACHE_DRIVER: array
+            SESSION_DRIVER: array
+            QUEUE_DRIVER: sync
           php artisan key:generate
           php artisan migrate
 
