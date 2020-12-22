@@ -53,12 +53,7 @@ jobs:
           CACHE_DRIVER: array
           SESSION_DRIVER: array
           QUEUE_DRIVER: sync
-          MAIL_MAILER: smtp
-          MAIL_HOST: smtp.gmail.com
-          MAIL_PORT: 587
-          MAIL_USERNAME: joemccorison@gmail.com
-          MAIL_PASSWORD: ${{ secrets.GMAIL_PASS }}
-          MAIL_ENCRYPTION: tls
+          MAIL_MAILER: array
           MAIL_FROM_ADDRESS: joemccorison@gmail.com
           MAIL_FROM_NAME: "Joe McCorison"
         run: vendor/bin/phpunit

@@ -17,7 +17,7 @@ class SendContactUsForm implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $contact;
+    public $contact;
 
     /**
      * Create a new job instance.

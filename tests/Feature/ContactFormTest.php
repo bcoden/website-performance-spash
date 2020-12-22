@@ -3,9 +3,8 @@
 namespace Tests\Feature;
 
 use App\Http\Livewire\ContactForm;
-use App\Mail\AdminNotification;
-use App\Mail\ContactUsForm;
-use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendContactUsForm;
+use Illuminate\Support\Facades\Queue;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -19,7 +18,7 @@ class ContactFormTest extends TestCase
 
     /** @test */
     public function contact_form_successfully_submits() {
-        Mail::fake();
+        Queue::fake();
 
         $form = Livewire::test(ContactForm::class)
             ->set('name', 'Joe McCorison')
@@ -33,16 +32,15 @@ class ContactFormTest extends TestCase
             $form->call('submitForm')
                 ->assertSee(__('messages.contact.success_message'));
 
-        Mail::assertQueued(function(ContactUsForm $mail) {
-            $mail->build();
+        Queue::assertPushed(SendContactUsForm::class, function ($job) {
+            $contact = $job->contact;
+            $hasEmail = $contact['email'] === 'joemccorison@gmail.com';
+            $hasName = $contact['name'] === 'Joe McCorison';
+            $hasPhone = $contact['phone'] === '2185254224';
+            $hasMessage = $contact['message'] === 'This is a test';
 
-            return $mail->hasTo('joemccorison@gmail.com') &&
-                $mail->hasFrom('joemccorison@gmail.com') &&
-                $mail->subject === 'Thank you for your interest';
+            return $hasEmail && $hasName && $hasPhone && $hasMessage;
         });
-
-        // ensure that the admin notification was sent
-        Mail::assertQueued(AdminNotification::class);
     }
 
     /** @test */
