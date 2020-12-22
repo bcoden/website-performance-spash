@@ -233,5 +233,8 @@ return [
     'admin' => [
         "email" => env('ADMIN_EMAIL', 'joemccorison@gmail.com'),
         "name" => env('ADMIN_NAME', 'Admin')
-    ]
+    ],
+    'tagmanager' => [
+        'id' => env('TAG_MANAGER_ID', '')
+    ],
 ];

@@ -30,6 +30,16 @@ jobs:
         run: |
           composer require "laravel/framework:8.12" --no-interaction --no-update
           composer update --prefer-stable --prefer-dist --no-interaction --no-suggest
+      - name: Setup App
+        run: |
+          cp .env.example .env
+          touch $GITHUB_WORKSPACE/database/website-analyzer.sqlite
+          env:
+            DB_CONNECTION=sqlite
+            DB_DATABASE=$GITHUB_WORKSPACE/database/website-analyzer.sqlite
+          php artisan key:generate
+          php artisan migrate
+
       - name: Execute tests
         run: vendor/bin/phpunit
 
