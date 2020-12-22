@@ -22,15 +22,15 @@
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl+ '&gtm_auth=_uomAzkv_X_b6owbjkkkAg&gtm_preview=env-{{ config('app.tagmanager.environment-id') }}&gtm_cookies_win=x';f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','{{ config('app.tagmanager.id') }}');</script>
     <!-- End Google Tag Manager -->
 </head>
 <body class="h-screen antialiased leading-none font-sans">
-    `<!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config('app.tagmanager.id') }}"
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config('app.tagmanager.id') }}&gtm_auth=_uomAzkv_X_b6owbjkkkAg&gtm_preview=env-{{ config('app.tagmanager.environment-id') }}&gtm_cookies_win=x"
                       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->`
+    <!-- End Google Tag Manager (noscript) -->
     <div class="p-8 bg-white">
         <livewire:website-analytics />
         <livewire:contact-form />
