@@ -53,6 +53,7 @@ jobs:
           CACHE_DRIVER: array
           SESSION_DRIVER: array
           QUEUE_DRIVER: sync
+          MAIL_FROM_ADDRESS: joemccorison@gmail
         run: vendor/bin/phpunit
 
       - name: Send Slack notification
