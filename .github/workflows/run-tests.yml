@@ -37,16 +37,19 @@ jobs:
           php artisan key:generate
           php artisan migrate
         env:
-          DB_CONNECTION=sqlite
-          DB_DATABASE=database/testdb.sqlite
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/testdb.sqlite
           CACHE_DRIVER: array
           SESSION_DRIVER: array
           QUEUE_DRIVER: sync
-
+      - name: Compile assets
+          run: |
+            npm install
+            npm run production
       - name: Execute tests
         env:
-          DB_CONNECTION=sqlite
-          DB_DATABASE=database/testdb.sqlite
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/testdb.sqlite
           CACHE_DRIVER: array
           SESSION_DRIVER: array
           QUEUE_DRIVER: sync
