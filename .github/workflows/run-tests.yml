@@ -34,16 +34,22 @@ jobs:
         run: |
           php -r "file_exists('.env') || copy('.env.example', '.env');"
           touch database/testdb.sqlite
-          env:
-            DB_CONNECTION=sqlite
-            DB_DATABASE=database/testdb.sqlite
-            CACHE_DRIVER: array
-            SESSION_DRIVER: array
-            QUEUE_DRIVER: sync
           php artisan key:generate
           php artisan migrate
+        env:
+          DB_CONNECTION=sqlite
+          DB_DATABASE=database/testdb.sqlite
+          CACHE_DRIVER: array
+          SESSION_DRIVER: array
+          QUEUE_DRIVER: sync
 
       - name: Execute tests
+        env:
+          DB_CONNECTION=sqlite
+          DB_DATABASE=database/testdb.sqlite
+          CACHE_DRIVER: array
+          SESSION_DRIVER: array
+          QUEUE_DRIVER: sync
         run: vendor/bin/phpunit
 
       - name: Send Slack notification
