@@ -33,7 +33,7 @@ class ContactFormTest extends TestCase
             $form->call('submitForm')
                 ->assertSee(__('messages.contact.success_message'));
 
-        Mail::assertSent(function(ContactUsForm $mail) {
+        Mail::assertQueued(function(ContactUsForm $mail) {
             $mail->build();
 
             return $mail->hasTo('joemccorison@gmail.com') &&
@@ -42,7 +42,7 @@ class ContactFormTest extends TestCase
         });
 
         // ensure that the admin notification was sent
-        Mail::assertSent(AdminNotification::class);
+        Mail::assertQueued(AdminNotification::class);
     }
 
     /** @test */
