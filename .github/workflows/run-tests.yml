@@ -43,9 +43,9 @@ jobs:
           SESSION_DRIVER: array
           QUEUE_DRIVER: sync
       - name: Compile assets
-          run: |
-            npm install
-            npm run production
+        run: |
+          npm install
+          npm run production
       - name: Execute tests
         env:
           DB_CONNECTION: sqlite
