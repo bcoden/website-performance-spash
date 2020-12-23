@@ -1,11 +1,11 @@
-<div class="w-full" x-data="websiteAnalytics()" x-init="scaffold()">
+<div class="w-full pl-8 pr-8 pt-8 bg-gradient-to-b from-blue-500 via-blue-200 to-white" x-data="websiteAnalytics()" x-init="scaffold()">
     <div class="my-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                <h2 class="text-3xl font-extrabold text-black-50 sm:text-4xl">
                     {{ __('Are you getting the most out of your website?') }}
                 </h2>
-                <p class="mt-3 text-xl text-gray-500 sm:mt-4">
+                <p class="mt-3 text-xl text-gray-800 sm:mt-4">
                     {{ __('Enter your website url in the field below to see how you are doing.') }}
                 </p>
             </div>
@@ -24,7 +24,7 @@
     @if ($stats)
         <div wire:loading.remove>
             <div class="text-center w-3/4 m-auto">
-                <p>{{ __('These scores which represent the end user experience are based on a scale of 0 - 100. Read more about what each score represents here') }} <a class="text-blue-400 underline" href="https://web.dev/performance-scoring/" target="_blank" title="https://web.dev/performance-scoring/">https://web.dev/performance-scoring</a>.</p>
+                <p>{{ __('These scores which represent the end user experience are based on a scale of 0 - 100. Read more about what each score represents here') }} <a class="text-blue-800 underline" href="https://web.dev/performance-scoring/" target="_blank" title="https://web.dev/performance-scoring/">https://web.dev/performance-scoring</a>.</p>
             </div>
             <div class="my-20" >
                 @component('components.website-performance-stats', ['stats' => $stats, 'overall' => $overall])@endcomponent

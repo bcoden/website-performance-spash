@@ -1,7 +1,7 @@
-<div class="relative bg-white my-10 w-full">
+<div class="relative bg-white my-10 w-full pl-8 pr-8 pb-8">
     <a id="contact-us"></a>
     <div class="relative md:grid md:grid-cols-2 ">
-        <div class="bg-gray-50 p-10 flex flex-col justify-content-center">
+        <div class="bg-gray-100 p-10 flex flex-col justify-content-center">
             <div class="max-w-lg mx-auto my-auto">
                 <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
                     {{ __('Get in touch') }}

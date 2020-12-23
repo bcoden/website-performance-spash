@@ -31,10 +31,8 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config('app.tagmanager.id') }}&gtm_auth=_uomAzkv_X_b6owbjkkkAg&gtm_preview=env-{{ config('app.tagmanager.environment-id') }}&gtm_cookies_win=x"
                       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div class="p-8 bg-white">
-        <livewire:website-analytics />
-        <livewire:contact-form />
-    </div>
+    <livewire:website-analytics />
+    <livewire:contact-form />
     <livewire:scripts />
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>
